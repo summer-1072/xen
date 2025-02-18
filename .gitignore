@@ -1,2 +1,8 @@
 /.idea/*
 /checkpoints/*
+/data/*
+/DINO/build/*
+/DINO/groundingdino.egg-info/*
+/DINO/groundingdino/_C.cpython-311-x86_64-linux-gnu.so
+DINO/groundingdino/version.py
+**/__pycache__/
