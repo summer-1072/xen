@@ -1,17 +1,19 @@
-import os
-import cv2
+import ffmpeg
 
-video_path = '/home/uto/data/code/xen/data/JayChou.mp4'
-out_dir = '/home/uto/data/code/xen/data/JayChou'
 
-cap = cv2.VideoCapture(video_path)
-idx = 0
-while True:
-    sign, frame = cap.read()
-    if not sign:
-        break
-    image_path = os.path.join(out_dir, str(idx) + '.png')
-    cv2.imwrite(image_path, frame)
-    idx += 1
+def video2img(video_path, img_dir):
+    (
+        ffmpeg
+        .input(video_path)
+        .output(img_dir, qscale_v=1)
+        .run()
+    )
 
-cap.release()
+
+def img2video(img_dir, video_path, fps=24):
+    (
+        ffmpeg
+        .input(img_dir, pattern_type='glob', framerate=fps)
+        .output(video_path, vcodec='libx264', crf=1)
+        .run()
+    )
